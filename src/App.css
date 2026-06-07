@@ -66,7 +66,7 @@
   position: relative;              /* anchor for the absolute-positioned popover */
 }
 
-/* Primary CTA button ("Get in touch") — change background color here */
+/* Primary CTA button ("Contact Me") — change background color here */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -75,7 +75,7 @@
   background: var(--color-accent); /* purple, defined in index.css */
   color: #fff;
   border: none;                    /* removes native button border */
-  border-radius: 8px;
+  border-radius: 25px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -126,7 +126,7 @@
   padding: 8px 14px;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: 25px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   animation: popover-in 0.15s ease-out;
   z-index: 10;
@@ -155,7 +155,7 @@
   width: 32px;
   height: 32px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 25px;
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
@@ -185,7 +185,7 @@
   font-size: 0.9rem;
   font-weight: 500;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px;
   cursor: pointer;
   background: transparent;
   color: var(--color-text-muted);
