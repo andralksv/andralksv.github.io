@@ -17,11 +17,12 @@
    LIGHT THEME (default) — change these variables to restyle the whole site
    ========================================================================== */
 :root {
-  --color-bg: #fdfdfd;               /* page background */
+  --color-bg: #f0f0f0;               /* page background */
   --color-text: #1a1a1a;             /* main text (near-black) */
   --color-text-secondary: #555555;   /* descriptions, body copy (dark grey) */
   --color-text-muted: #888888;       /* labels, meta text (light grey) */
   --color-accent: #4F46E5;           /* primary brand color (purple) — buttons, links, tags */
+  --color-accent-rgb: 79, 70, 229;   /* RGB triplet for rgba() glow effects */
   --color-accent-hover: #4338CA;     /* darker shade for hover states */
   --color-border: #e5e5e5;           /* divider lines, card borders */
   --color-card-hover-shadow: rgba(79, 70, 229, 0.08);
@@ -32,7 +33,7 @@
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   --max-width: 880px;                /* content width — increase for wider layout */
-  --spacing-section: 40px;           /* vertical padding between sections */
+  --spacing-section: 20px;           /* vertical padding between sections */
 }
 
 /* ==========================================================================
@@ -45,6 +46,7 @@ html.dark {
   --color-text-secondary: #9ca3af;   /* muted body copy */
   --color-text-muted: #6b7280;       /* faded labels */
   --color-accent: #d3b47a;           /* warm gold accent (from reference) */
+  --color-accent-rgb: 211, 180, 122; /* RGB triplet for rgba() glow effects */
   --color-accent-hover: #cfae5d;     /* brighter gold on hover */
   --color-border: #2a2b30;           /* subtle dark borders */
   --color-card-hover-shadow: rgba(212, 168, 67, 0.1);
@@ -106,7 +108,6 @@ section {
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--color-text-muted);
   margin-bottom: 20px;
 }

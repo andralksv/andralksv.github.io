@@ -11,9 +11,10 @@ const expandableJobs = [
     location: 'Berlin',
     period: '2023 – Present',
     bullets: [
+      'Subscription EdTech app teaching piano, operating across 8 markets.',
       'Owned onboarding and monetization flows across Web and App for a subscription-based SaaS platform operating internationally.',
       'Revamped new-user experience by rethinking the entry and onboarding flows across Web and App – making Skoove feel more personalized and relevant for new piano learners.',
-      '+50% trial starts and +31% registration-to-trial conversion through iterative A/B testing.',
+      '+50% trial starts and +31% registration-to-trial conversion, cumulative across multiple onboarding A/B tests.',
       '+18% CLV through pricing and paywall experiments.',
       'Led partner integration for a new co-branded product: translated commercial requirements into technical specs, managed cross-org stakeholder alignment, and coordinated delivery across engineering and UX teams.',
       'Translated business and marketing requirements into backend- and frontend-ready development tasks; worked closely with backend developers to define APIs, event tracking, and subscription logic.',
@@ -98,7 +99,7 @@ const Experience = () => {
   return (
     <section>
       {/* Section heading – change the text here to rename the section */}
-      <p className="section-label">Experience</p>
+      <p className="section-label">experience</p>
 
       {/* Expandable jobs – each has an arrow, title, meta, and bullets */}
       {expandableJobs.map((job, i) => {
@@ -140,7 +141,7 @@ const Experience = () => {
       })}
 
       {/* Earlier experience – plain titles, no expand/collapse */}
-      <p className="section-label" style={{ marginTop: 48 }}>Earlier Experience</p>
+      <p className="section-label" style={{ marginTop: 48 }}>earlier experience</p>
 
       {earlierJobs.map((job) => (
         <div className="experience-item experience-item--plain" key={job.title}>

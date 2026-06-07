@@ -32,8 +32,8 @@ const Tip = ({ children }) => (
 
 const cases = [
   {
-    title: 'Building a Cancellation Recovery Flow That Saved 13% of Churning Users',
-    desc: 'Designed and shipped a web cancellation recovery system from scratch – discount offers, survey logic, and tracking – cutting annual churn by 2 percentage points.',
+    title: 'A Cancellation Save-Flow That Recovers ~€50k/Year',
+    desc: 'Designed and shipped a web cancellation save-flow from scratch – targeted win-back offers, exit survey, and end-to-end tracking. Churn dropped 15% → 13%, retaining ~€4–4.5k/month (≈€50k/year).',
     tag: 'Retention & Monetization',
     content: [
       'Price is always the number-one cancellation reason. We confirmed it once we added a cancellation survey, but the data also showed something actionable: many users leaving over cost would stay if offered a short-term discount. The existing cancellation flow was a dead end – click "cancel" and you\'re gone. No recovery attempt, no counter-offer, no feedback loop.',
@@ -52,14 +52,14 @@ const cases = [
         Set up Mixpanel events for every step: offer viewed, offer accepted, offer declined, cancellation completed. This let us measure the true recovery rate and revenue impact without guessing.
       </Step>,
       <Step num={5} title="Measured results">
-        Year-over-year web cancellation rate dropped from 15% to 13% – a 2 percentage point improvement. In the first full month, 91 users accepted a recovery offer, generating roughly €4–4.5k/month in retained revenue. The flow paid for itself within weeks.
+        Year-over-year web cancellation rate dropped from 15% to 13% – a 2 percentage point improvement. In the first full month, 91 users accepted a recovery offer, generating roughly €4–4.5k/month in retained revenue – about €50k/year at that run-rate. The flow paid for itself within weeks.
       </Step>,
       <Tip>Don't overthink the offer design – start with simple discounts and iterate. The biggest win is just having a recovery step at all. Most of our impact came from users who simply needed a reason to pause before clicking "confirm."</Tip>,
     ],
   },
   {
-    title: 'How a 2-Screen Questionnaire Revealed Our Real Audience',
-    desc: 'Added two onboarding questions – "Who will be learning?" and "How old are you?" – and uncovered segment insights that reshaped paywall strategy, content, and marketing.',
+    title: 'Two Onboarding Questions That Reshaped Our Paywall & Content',
+    desc: 'Added two onboarding questions – "who\'s learning?" and "how old are you?" The segments overturned our audience assumptions (11% were adult-child pairs we\'d been missing) and became the foundation for the personalization work that followed.',
     tag: 'User Research & Personalization',
     content: [
       'We assumed we knew our users. Turns out we were wrong about a big chunk of them. By adding just two screens to the onboarding questionnaire – "Who will be learning?" and "How old are you?" – we learned things that changed how we build the product.',
@@ -81,8 +81,8 @@ const cases = [
     ],
   },
   {
-    title: 'Personalized First Lesson: +37% Uplift in Free Trial Starts',
-    desc: 'Used questionnaire data to personalize the very first app experience – level selection, song choice, and lesson routing – driving a significant uplift in install-to-trial conversion.',
+    title: '+37% Trial Starts from a Personalized First Lesson',
+    desc: 'Used questionnaire data to personalize the first app experience – level, song choice, and lesson routing. A/B tested on iOS + Android: install-to-trial 3.6% → 4.9% (+37%), trial-to-paid holding steady.',
     tag: 'Conversion Optimization',
     content: [
       'Once we had real segment data from the onboarding questionnaire, the next question was obvious: can we use it to make the first experience feel tailor-made? The hypothesis was simple – if new users see content that matches their skill level and taste from the very first screen, they\'re more likely to start a free trial.',
@@ -94,7 +94,7 @@ const cases = [
         Ran the experiment simultaneously on iOS and Android for 4 weeks. Primary metric: conversion from install to started free trial. Secondary metric: conversion from free trial to started paid subscription. Guardrail metrics included 7-day retention and cancellation rates.
       </Step>,
       <Step num={3} title="Measured strong results">
-        Install-to-free-trial conversion improved from a 3.6% baseline toward the 5% target – a meaningful uplift that justified a full rollout. Trial-to-paid conversion held steady, meaning we weren't just attracting lower-intent users. Recommended rolling out to 100% of traffic immediately.
+        Install-to-free-trial conversion improved from a 3.6% baseline to 4.9% – a +37% relative uplift that justified a full rollout. Trial-to-paid conversion held steady, meaning we weren't just attracting lower-intent users. Recommended rolling out to 100% of traffic immediately.
       </Step>,
       <Step num={4} title="Extracted lasting learnings">
         Discovered that pinning a high-converting song at the top of the selection list directly influences user choice – keep your best-performing content front and center. Also learned that "No preference" users mostly exit to the home screen, suggesting they need a different nudge entirely.
@@ -116,6 +116,7 @@ const Cases = () => {
             className="case-card"
             key={c.title}
             onClick={() => setOpenArticle(c)}
+            aria-label={`Read case study: ${c.title}`}
           >
             <p className="case-card-title">{c.title}</p>
             <p className="case-card-desc">{c.desc}</p>

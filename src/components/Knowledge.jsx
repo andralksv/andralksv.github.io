@@ -28,24 +28,24 @@ const Tip = ({ children }) => (
   <div className="tip-block"><strong>Pro tip: </strong>{children}</div>
 )
 
-/* ─── AI KNOWLEDGE POSTS ─── */
+/* ─── AI IN PRACTICE POSTS ─── */
 
 const posts = [
   {
-    title: 'Raw Data → Live Dashboard in 30 Minutes',
-    desc: 'Ditch the static spreadsheet. Build a shareable, interactive dashboard with AI – no code, no dev time, no excuses.',
+    title: 'From a Spreadsheet to a Self-Serve Dashboard the Team Actually Uses',
+    desc: 'Stakeholders ignored my static analytics tables, so I built a live, shareable dashboard with AI in ~30 minutes. The team now self-serves the numbers – fewer ad-hoc pulls for me, faster decisions for them.',
     tag: 'Data & Analytics',
     content: [
-      'I got tired of copying analytics numbers into Confluence tables that nobody reads. So I tried a different approach: building a fully interactive dashboard with an AI assistant. It took 30 minutes and the result was dramatically better than any static report.',
+      'I was tired of copying analytics numbers into Confluence tables nobody reads, and the team kept pinging me for figures. The fix: a live, interactive dashboard I built with Claude in about 30 minutes – and stakeholders now self-serve the data instead of asking me.',
       <Flow steps={['Connect data source', 'Query in plain language', 'Build interactive report', 'Export HTML', 'Deploy & share']} />,
       <Step num={1} title="Connect your analytics tool">
-        Hook up your data source (Mixpanel, Amplitude, or similar) to the AI assistant via an integration. No SQL knowledge needed – you'll query in plain English.
+        Hook up your data source (Mixpanel, Amplitude, or similar) to Claude via an integration. No SQL knowledge needed – you'll query in plain English.
       </Step>,
       <Step num={2} title="Ask questions, get numbers">
-        Talk to your data like you'd talk to an analyst: "show me conversion by device type," "break down activation rates by cohort," "compare this month vs. last." The AI runs the queries and returns real numbers.
+        Talk to your data like you'd talk to an analyst: "show me conversion by device type," "break down activation rates by cohort," "compare this month vs. last." Claude runs the queries and returns real numbers.
       </Step>,
       <Step num={3} title="Generate the interactive report">
-        Ask the AI to build a dashboard from your findings. It creates a live artifact with tabs, charts, cross-filters, and insight callouts. Iterate in real time – "switch this to a bar chart," "add a date filter," "highlight the key takeaway."
+        Ask Claude to build a dashboard from your findings. It creates a live artifact with tabs, charts, cross-filters, and insight callouts. Iterate in real time – "switch this to a bar chart," "add a date filter," "highlight the key takeaway."
       </Step>,
       <Step num={4} title="Export as standalone HTML">
         Ask to convert everything into a single HTML file. Zero dependencies – anyone can open it in a browser. No npm, no build tools, no hosting complexity.
@@ -57,17 +57,17 @@ const posts = [
     ],
   },
   {
-    title: 'Ship a Clickable Prototype Before Lunch',
-    desc: 'Turn static design mockups into a working, shareable prototype using AI – no front-end skills required.',
+    title: 'De-risking Roadmap Bets: Idea → Stakeholder-Aligned Prototype in a Day',
+    desc: 'Instead of debating features in the abstract, I turn design mockups into a clickable prototype with AI in an afternoon – so stakeholders align (or kill the idea) before engineering spends a sprint.',
     tag: 'Prototyping',
     content: [
-      'What used to require a developer and a sprint of work now takes an afternoon of prompting. AI assistants can read exported design frames and generate working prototypes with real navigation, hover states, and realistic content.',
-      <Flow steps={['Export design frames', 'Feed to AI + brief', 'Iterate by prompting', 'Deploy & share']} />,
+      'What used to need a developer and a sprint now takes an afternoon of prompting. Claude can read exported design frames and generate a working prototype with real navigation, hover states, and realistic content – enough to align stakeholders, or kill an idea, before engineering commits.',
+      <Flow steps={['Export design frames', 'Feed to Claude + brief', 'Iterate by prompting', 'Deploy & share']} />,
       <Step num={1} title="Export your screens">
         Open your design tool and export the relevant frames as PNGs. You don't need the full file – just the screens that matter for the flow you want to prototype.
       </Step>,
-      <Step num={2} title="Hand them to the AI with a brief">
-        Give the AI the exported images plus a short description: which screens to include, what the user flow should be, what data to populate. The AI builds a working prototype with clickable navigation and realistic content.
+      <Step num={2} title="Hand them to Claude with a brief">
+        Give Claude the exported images plus a short description: which screens to include, what the user flow should be, what data to populate. Claude builds a working prototype with clickable navigation and realistic content.
       </Step>,
       <Step num={3} title="Iterate at the speed of conversation">
         This is where it gets fun. Keep prompting: "make the cards bigger," "add a search bar," "try a dark theme," "swap the hero image." Each change takes seconds. The feedback loop is absurdly fast compared to traditional prototyping.
@@ -78,26 +78,6 @@ const posts = [
       <Tip>Use the actual design file URL, not a share link – the access keys are different. Also, building the initial base takes a few rounds of back-and-forth, so don't expect perfection on the first prompt.</Tip>,
     ],
   },
-  {
-    title: 'The Slide Tool That Cut My Deck Time in Half',
-    desc: 'I stopped fighting with alignment and font sizes. Here\'s the presentation workflow that actually lets me focus on the story.',
-    tag: 'Productivity',
-    content: [
-      'I spent years nudging text boxes in legacy slide tools. Then I switched to a modern AI-powered presentation tool, and the time I spend on decks dropped by roughly 50%. The quality went up. Here\'s the workflow.',
-      <Flow steps={['Pick a template', 'Build with slash commands', 'Focus on the story', 'Ship it']} />,
-      <Step num={1} title="Start from a template, not a blank slide">
-        Create a new document and pick a template that matches your content type. For business presentations, stick with traditional layouts – experimental formats look great but behave unpredictably across screen sizes.
-      </Step>,
-      <Step num={2} title="Use slash commands instead of menus">
-        Type "/" to open a command menu with structured elements: boxes, timelines, tables, calendars. It's dramatically faster than hunting through ribbon menus or right-click options. This single feature changed how I build slides.
-      </Step>,
-      <Step num={3} title="Focus on narrative, not visual polish">
-        The tool handles alignment, spacing, and typography automatically. You focus on what actually matters: the story you're telling. Every minute you used to spend adjusting font sizes is now spent on making your argument stronger.
-      </Step>,
-      <Tip>The "/box" command is a game-changer for highlighting key takeaways. And "Add from template" when creating new slides gives you clean, professional starting points every time.</Tip>,
-      'The result: consistently polished decks, produced faster, with more of my energy going into the content rather than the container.',
-    ],
-  },
 ]
 
 const Knowledge = () => {
@@ -105,13 +85,14 @@ const Knowledge = () => {
 
   return (
     <section>
-      <p className="section-label">AI Knowledge</p>
+      <p className="section-label">AI in Practice</p>
       <div className="cases-grid">
         {posts.map((p) => (
           <button
             className="case-card"
             key={p.title}
             onClick={() => setOpenArticle(p)}
+            aria-label={`Read article: ${p.title}`}
           >
             <p className="case-card-title">{p.title}</p>
             <p className="case-card-desc">{p.desc}</p>

@@ -4,7 +4,7 @@
 
 /* Hero container — side-by-side layout: text left, photo right */
 .hero {
-  padding: 56px 0 32px;           /* top/bottom spacing above hero */
+  padding: 100px 0 32px;           /* top/bottom spacing above hero */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -18,6 +18,14 @@
   line-height: 1.1;
   letter-spacing: -0.02em;         /* tightens letter spacing for large text */
   margin-bottom: 16px;
+  display: inline-block;
+  transition: text-shadow 0.3s;
+}
+
+.hero-text h1:hover {
+  text-shadow:
+    0 0 10px rgba(var(--color-accent-rgb), 0.35),
+    0 0 25px rgba(var(--color-accent-rgb), 0.15);
 }
 
 /* Subtitle under your name */
@@ -36,6 +44,14 @@
   object-fit: cover;               /* crops image to fit without stretching */
   flex-shrink: 0;                  /* prevents photo from shrinking on narrow screens */
   border: 1px solid var(--color-accent); /* accent ring matching CTA button color */
+  transition: box-shadow 0.6s ease;
+}
+
+.hero-photo:hover {
+  box-shadow:
+    0 0 8px  rgba(var(--color-accent-rgb), 0.25),
+    0 0 20px rgba(var(--color-accent-rgb), 0.12),
+    0 0 40px rgba(var(--color-accent-rgb), 0.06);
 }
 
 /* Placeholder shown when no photo is set (displays your initial) */
@@ -71,20 +87,53 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;                        /* space between icon and text */
-  padding: 10px 20px;
+  height: 40px;                    /* match Download CV + social icons */
+  padding: 0 20px;
   background: var(--color-accent); /* purple, defined in index.css */
   color: #fff;
-  border: none;                    /* removes native button border */
+  border: 1px solid transparent;   /* transparent border keeps height equal to the outline button */
   border-radius: 25px;
+  font-family: inherit;
   font-size: 0.95rem;
   font-weight: 600;
+  line-height: 1;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-hover);  /* darker purple on hover */
+  background: var(--color-accent-hover);
   color: #fff;
+  box-shadow:
+    0 0 10px rgba(var(--color-accent-rgb), 0.35),
+    0 0 25px rgba(var(--color-accent-rgb), 0.15);
+}
+
+/* Secondary CTA ("Download CV") — outline style sitting next to the primary button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;                        /* space between icon and text */
+  height: 40px;                    /* match Contact me + social icons */
+  padding: 0 20px;
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 25px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow:
+    0 0 10px rgba(var(--color-accent-rgb), 0.25),
+    0 0 25px rgba(var(--color-accent-rgb), 0.1);
 }
 
 /* Round icon buttons (LinkedIn, Telegram) — change width/height to resize */
@@ -97,12 +146,15 @@
   align-items: center;
   justify-content: center;
   color: var(--color-text);
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 .social-icon:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+  box-shadow:
+    0 0 8px rgba(var(--color-accent-rgb), 0.3),
+    0 0 20px rgba(var(--color-accent-rgb), 0.12);
 }
 
 /* Icon size inside the round buttons */
@@ -174,6 +226,7 @@
 /* Tab bar container */
 .tabs {
   display: flex;
+  flex-wrap: wrap;                 /* wrap to a second row if labels get long */
   gap: 4px;                        /* space between tab buttons */
   padding: 24px 0 0;
 }
@@ -193,8 +246,8 @@
 }
 
 .tab-btn:hover {
-  background: var(--color-tab-hover-bg);  /* light grey on hover */
-  color: var(--color-text);
+  background: none;  /* light grey on hover */
+  color: var(--color-accent);
 }
 
 /* Active tab — filled accent background */
@@ -248,18 +301,25 @@
    STRENGTHS ("What I Do") — list of your key skills
    ========================================================================== */
 
-.skills-list {
+.strengths-list {
   list-style: none;
 }
 
 /* Each skill line — change padding to adjust spacing between items */
-.skills-list li {
-  padding: 12px 0;
+.strengths-list li {
+  padding: 8px 0;
   border-bottom: 1px solid var(--color-border);
   font-size: 1.05rem;
+  transition: text-shadow 0.3s;
 }
 
-.skills-list li:last-child {
+.strengths-list li:hover {
+  text-shadow:
+    0 0 8px rgba(var(--color-accent-rgb), 0.3),
+    0 0 20px rgba(var(--color-accent-rgb), 0.12);
+}
+
+.strengths-list li:last-child {
   border-bottom: none;             /* no line after the last item */
 }
 
@@ -294,6 +354,9 @@
 /* Title turns purple on hover */
 .experience-header:hover .experience-title {
   color: var(--color-accent);
+  text-shadow:
+    0 0 8px rgba(var(--color-accent-rgb), 0.3),
+    0 0 20px rgba(var(--color-accent-rgb), 0.12);
 }
 
 /* Arrow icon — rotates when expanded */
@@ -451,10 +514,10 @@
   position: relative;
   background: var(--color-bg);
   border-radius: 16px;
-  padding: 40px 36px;
-  max-width: 640px;
+  padding: 40px 40px;
+  max-width: 800px;
   width: 100%;
-  max-height: 80vh;
+  max-height: 85vh;
   overflow-y: auto;
   animation: modal-slide-up 0.25s ease-out;
 }
@@ -624,6 +687,16 @@ footer {
 .footer-text {
   font-size: 0.85rem;
   color: var(--color-text-muted);
+  display: inline-block;
+  transition: text-shadow 0.3s, color 0.3s;
+}
+
+.footer-text:hover {
+  color: var(--color-accent);
+  text-shadow:
+    0 0 12px rgba(var(--color-accent-rgb), 0.5),
+    0 0 30px rgba(var(--color-accent-rgb), 0.25),
+    0 0 50px rgba(var(--color-accent-rgb), 0.1);
 }
 
 /* ==========================================================================
@@ -728,14 +801,26 @@ html.dark .social-icon {
   color: var(--color-text-muted);
 }
 
+/* In dark mode, hovering turns the icon fill gold to match the glow */
+html.dark .social-icon:hover {
+  color: var(--color-accent);
+}
+
 /* Experience bullet dots adapt to dark theme */
 html.dark .experience-bullets li::before {
   background: var(--color-border);
 }
 
 /* Skills list borders */
-html.dark .skills-list li {
+html.dark .strengths-list li {
   border-color: var(--color-border);
+}
+
+/* Dark-mode hover glow — matches Experience section intensity */
+html.dark .strengths-list li:hover {
+  text-shadow:
+    0 0 8px rgba(var(--color-accent-rgb), 0.3),
+    0 0 20px rgba(var(--color-accent-rgb), 0.12);
 }
 
 html.dark .experience-item--plain {
