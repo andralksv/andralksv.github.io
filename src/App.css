@@ -1,0 +1,548 @@
+/* ==========================================================================
+   HERO SECTION — the top block with name, tagline, photo, and social links
+   ========================================================================== */
+
+/* Hero container — side-by-side layout: text left, photo right */
+.hero {
+  padding: 56px 0 32px;           /* top/bottom spacing above hero */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;                       /* space between text block and photo */
+}
+
+/* Your name — change font-size to make it bigger/smaller */
+.hero-text h1 {
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;         /* tightens letter spacing for large text */
+  margin-bottom: 16px;
+}
+
+/* Subtitle under your name */
+.hero-tagline {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);  /* grey, defined in index.css */
+  line-height: 1.5;
+  margin-bottom: 24px;             /* space before social buttons */
+}
+
+/* Profile photo — change width + height to resize (keep equal for circle) */
+.hero-photo {
+  width: 215px;
+  height: 215px;
+  border-radius: 50%;              /* makes it a circle */
+  object-fit: cover;               /* crops image to fit without stretching */
+  flex-shrink: 0;                  /* prevents photo from shrinking on narrow screens */
+}
+
+/* Placeholder shown when no photo is set (displays your initial) */
+.hero-photo-placeholder {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   SOCIAL LINKS — "Get in touch" button + icon circles (LinkedIn, Telegram)
+   ========================================================================== */
+
+/* Row containing all social buttons */
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;                       /* space between buttons */
+  flex-wrap: wrap;                 /* wraps to next line on small screens */
+  position: relative;              /* anchor for the absolute-positioned popover */
+}
+
+/* Primary CTA button ("Get in touch") — change background color here */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;                        /* space between icon and text */
+  padding: 10px 20px;
+  background: var(--color-accent); /* purple, defined in index.css */
+  color: #fff;
+  border: none;                    /* removes native button border */
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);  /* darker purple on hover */
+  color: #fff;
+}
+
+/* Round icon buttons (LinkedIn, Telegram) — change width/height to resize */
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.social-icon:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Icon size inside the round buttons */
+.social-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   EMAIL POPOVER — appears on "Contact me" click, shows email + actions
+   ========================================================================== */
+
+/* Popover container — floats below the CTA button without pushing layout */
+.email-popover {
+  position: absolute;
+  top: calc(100% + 8px);           /* 8px below the social row */
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: popover-in 0.15s ease-out;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+/* Fade + slide in */
+@keyframes popover-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Email address text */
+.email-popover-address {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  font-weight: 500;
+  user-select: all;                /* click to select the whole email */
+}
+
+/* Copy and send icon buttons */
+.email-popover-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.email-popover-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   TABS — "About" / "Cases" switcher between hero and content
+   ========================================================================== */
+
+/* Tab bar container */
+.tabs {
+  display: flex;
+  gap: 4px;                        /* space between tab buttons */
+  padding: 24px 0 0;
+}
+
+/* Individual tab button (inactive state) */
+.tab-btn {
+  padding: 8px 18px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--color-text-muted);
+  transition: background 0.15s, color 0.15s;
+}
+
+.tab-btn:hover {
+  background: var(--color-tab-hover-bg);  /* light grey on hover */
+  color: var(--color-text);
+}
+
+/* Active tab — filled accent background */
+.tab-btn.active {
+  background: var(--color-accent);
+  color: #fff;                     /* white text on purple (light mode) */
+}
+
+/* ==========================================================================
+   LOGO BAR — company logos (Skoove, Bonify, Yandex)
+   ========================================================================== */
+
+/* Logo row container — change padding to adjust vertical spacing */
+.logo-bar {
+  padding: 20px 0;
+  display: flex;
+  align-items: flex-end;           /* aligns logos to the same bottom edge */
+  justify-content: center;         /* centered; change to flex-start for left-aligned */
+  gap: 36px;                       /* space between logos */
+  flex-wrap: wrap;
+}
+
+/* Wrapper span keeps light + dark img variants together */
+.logo-bar-wrap {
+  display: inline-flex;
+  align-items: flex-end;
+  height: 24px;
+}
+
+/* Individual logo image — change height to make logos bigger/smaller */
+.logo-bar-img {
+  height: 24px;
+  width: auto;                     /* keeps aspect ratio */
+  object-fit: contain;
+  filter: grayscale(1);            /* black & white by default */
+  opacity: 0.45;                   /* faded look */
+  mix-blend-mode: multiply;        /* removes white/grey backgrounds from PNGs */
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+/* On hover: full color, full opacity */
+.logo-bar-wrap:hover .logo-bar-img {
+  opacity: 1;
+  filter: none;
+}
+
+/* Dark versions hidden in light mode */
+.logo-dark { display: none; }
+
+/* ==========================================================================
+   STRENGTHS ("What I Do") — list of your key skills
+   ========================================================================== */
+
+.skills-list {
+  list-style: none;
+}
+
+/* Each skill line — change padding to adjust spacing between items */
+.skills-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 1.05rem;
+}
+
+.skills-list li:last-child {
+  border-bottom: none;             /* no line after the last item */
+}
+
+/* ==========================================================================
+   EXPERIENCE — expandable job entries with accordion animation
+   ========================================================================== */
+
+.experience-item {
+  margin-bottom: 2px;
+}
+
+.experience-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Clickable header row — the whole row is a <button> for accessibility */
+.experience-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--color-text);
+  flex-wrap: wrap;                 /* wraps meta to next line on small screens */
+}
+
+/* Title turns purple on hover */
+.experience-header:hover .experience-title {
+  color: var(--color-accent);
+}
+
+/* Arrow icon — rotates when expanded */
+.experience-arrow {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;  /* smooth rotation */
+  position: relative;
+  top: 1px;
+}
+
+/* Rotated state when section is open */
+.experience-arrow.open {
+  transform: rotate(90deg);
+}
+
+/* Job title text */
+.experience-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color 0.2s;
+}
+
+/* "Berlin · 2023 – Present" label */
+.experience-meta {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* Bullet list inside expanded job */
+.experience-bullets {
+  list-style: none;
+  padding: 0 0 8px 24px;          /* left indent aligns with title text */
+  margin: 0;
+}
+
+/* Individual bullet point */
+.experience-bullets li {
+  position: relative;
+  padding: 3px 0 3px 16px;        /* left padding makes room for the dot */
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* Grey dot before each bullet */
+.experience-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+
+/* Earlier experience — plain title lines, no expand arrow */
+.experience-item--plain {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 0;
+  padding-left: 24px;             /* aligns with expandable titles */
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.experience-item--plain:last-child {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   CASES — article cards shown on the "Cases" tab
+   ========================================================================== */
+
+/* Grid of case cards — currently 1 column; change to "1fr 1fr" for 2 cols */
+.cases-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* Individual card */
+.case-card {
+  display: block;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Card hover effect — accent border + subtle shadow */
+.case-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 12px var(--color-card-hover-shadow);
+}
+
+/* Card title */
+.case-card-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+/* Card description text */
+.case-card-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Tag pill (e.g. "Product Strategy", "EdTech") */
+.case-card-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  background: var(--color-tag-bg);  /* tinted accent background */
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+footer {
+  padding: 32px 0;
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   RESPONSIVE — tablet and mobile overrides
+   ========================================================================== */
+
+/* Tablet (≤768px) */
+@media (max-width: 768px) {
+  .hero {
+    padding: 48px 0 28px;
+    gap: 32px;
+  }
+  .hero-text h1 { font-size: 2.5rem; }
+  .hero-photo, .hero-photo-placeholder { width: 170px; height: 170px; }
+  .logo-bar { gap: 28px; }
+}
+
+/* Mobile (≤520px) — photo moves above name, everything stacks vertically */
+@media (max-width: 520px) {
+  .hero {
+    flex-direction: column-reverse;  /* photo on top, text below */
+    align-items: flex-start;
+    padding: 36px 0 24px;
+    gap: 20px;
+  }
+  .hero-text h1 { font-size: 2rem; }
+  .hero-tagline { font-size: 1.05rem; }
+  .hero-photo, .hero-photo-placeholder {
+    width: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+  }
+  .logo-bar { gap: 20px; justify-content: flex-start; }
+  .social-row { gap: 10px; }
+  .tabs { gap: 2px; }
+  .tab-btn { padding: 7px 14px; font-size: 0.85rem; }
+}
+
+/* ==========================================================================
+   THEME TOGGLE — sun/moon icon button in top-right corner
+   ========================================================================== */
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  z-index: 100;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   DARK MODE OVERRIDES — fixes for elements that need special dark treatment
+   ========================================================================== */
+
+/* In dark mode: hide light logos, show dark versions for Bonify/Yandex */
+html.dark .logo-light { display: none; }
+html.dark .logo-dark  { display: block; }
+
+/* Default state: white silhouettes via brightness(0)→black then invert→white */
+html.dark .logo-bar-img {
+  filter: brightness(0) invert(1);
+  mix-blend-mode: normal;           /* multiply doesn't work on dark bg */
+  opacity: 0.5;
+}
+
+/* Hover: show true colors from the dark-variant logos (white text + colored accents) */
+html.dark .logo-bar-wrap:hover .logo-bar-img {
+  filter: none;
+  opacity: 1;
+}
+
+/* CTA button + active tab — dark text on gold instead of white */
+html.dark .btn-primary,
+html.dark .btn-primary:hover,
+html.dark .tab-btn.active {
+  color: #070709;
+}
+
+/* Social icon borders are more subtle in dark mode */
+html.dark .social-icon {
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* Experience bullet dots adapt to dark theme */
+html.dark .experience-bullets li::before {
+  background: var(--color-border);
+}
+
+/* Skills list borders */
+html.dark .skills-list li {
+  border-color: var(--color-border);
+}
+
+html.dark .experience-item--plain {
+  border-color: var(--color-border);
+}
