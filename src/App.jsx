@@ -4,6 +4,7 @@ import LogoBar from './components/LogoBar'
 import Strengths from './components/Strengths'
 import Experience from './components/Experience'
 import Cases from './components/Cases'
+import Knowledge from './components/Knowledge'
 import Footer from './components/Footer'
 import ThemeToggle from './components/ThemeToggle'
 import './App.css'
@@ -30,6 +31,12 @@ function App() {
         >
           Cases
         </button>
+        <button
+          className={`tab-btn ${tab === 'knowledge' ? 'active' : ''}`}
+          onClick={() => setTab('knowledge')}
+        >
+          AI Knowledge
+        </button>
       </div>
 
       <hr className="divider" style={{ marginTop: 16 }} />
@@ -45,6 +52,7 @@ function App() {
       )}
 
       {tab === 'cases' && <Cases />}
+      {tab === 'knowledge' && <Knowledge />}
 
       <Footer />
     </div>

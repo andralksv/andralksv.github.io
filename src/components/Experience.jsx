@@ -12,13 +12,13 @@ const expandableJobs = [
     period: '2023 – Present',
     bullets: [
       'Owned onboarding and monetization flows across Web and App for a subscription-based SaaS platform operating internationally.',
-      'Revamped new-user experience by rethinking the entry and onboarding flows across Web and App — making Skoove feel more personalized and relevant for new piano learners.',
+      'Revamped new-user experience by rethinking the entry and onboarding flows across Web and App – making Skoove feel more personalized and relevant for new piano learners.',
       '+50% trial starts and +31% registration-to-trial conversion through iterative A/B testing.',
       '+18% CLV through pricing and paywall experiments.',
       'Led partner integration for a new co-branded product: translated commercial requirements into technical specs, managed cross-org stakeholder alignment, and coordinated delivery across engineering and UX teams.',
       'Translated business and marketing requirements into backend- and frontend-ready development tasks; worked closely with backend developers to define APIs, event tracking, and subscription logic.',
       'Prioritized roadmap based on user value & business impact, feasibility & technical constraints, balancing commercial goals with pedagogic mission.',
-      'Subscription & billing: deep setup of subscription infrastructure — RevenueCat, App Store Connect, Google Play Console, Stripe.',
+      'Subscription & billing: deep setup of subscription infrastructure – RevenueCat, App Store Connect, Google Play Console, Stripe.',
       'Web funnel optimization at scale: localization across 8 languages, performance tuning per acquisition channel.',
     ],
   },
@@ -97,21 +97,21 @@ const Experience = () => {
 
   return (
     <section>
-      {/* Section heading — change the text here to rename the section */}
+      {/* Section heading – change the text here to rename the section */}
       <p className="section-label">Experience</p>
 
-      {/* Expandable jobs — each has an arrow, title, meta, and bullets */}
+      {/* Expandable jobs – each has an arrow, title, meta, and bullets */}
       {expandableJobs.map((job, i) => {
         const isOpen = openIndex === i
         return (
           <div className="experience-item" key={job.title}>
-            {/* Clickable header row — the whole row is a button for accessibility */}
+            {/* Clickable header row – the whole row is a button for accessibility */}
             <button
               className="experience-header"
               onClick={() => toggle(i)}
               aria-expanded={isOpen}
             >
-              {/* Arrow icon — rotates 90° when open (via CSS class "open") */}
+              {/* Arrow icon – rotates 90° when open (via CSS class "open") */}
               <svg
                 className={`experience-arrow ${isOpen ? 'open' : ''}`}
                 width="16"
@@ -121,7 +121,7 @@ const Experience = () => {
               >
                 <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              {/* Job title — edit the text in expandableJobs array above */}
+              {/* Job title – edit the text in expandableJobs array above */}
               <span className="experience-title">{job.title}</span>
               {/* Location and date range */}
               <span className="experience-meta">{job.location} · {job.period}</span>
@@ -139,7 +139,7 @@ const Experience = () => {
         )
       })}
 
-      {/* Earlier experience — plain titles, no expand/collapse */}
+      {/* Earlier experience – plain titles, no expand/collapse */}
       <p className="section-label" style={{ marginTop: 48 }}>Earlier Experience</p>
 
       {earlierJobs.map((job) => (
