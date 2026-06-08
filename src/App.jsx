@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback, useLayoutEffect, useEffect } from 'react'
 import Hero from './components/Hero'
 import LogoBar from './components/LogoBar'
 import Strengths from './components/Strengths'
@@ -19,6 +19,34 @@ const TABS = [
 function App() {
   const [tab, setTab] = useState('about')
   const tabRefs = useRef({})
+  const tabBarRef = useRef(null)
+  const [indicatorStyle, setIndicatorStyle] = useState({ opacity: 0 })
+  const [indicatorPulse, setIndicatorPulse] = useState(false)
+  const pulseTimer = useRef(null)
+
+  /* Measure active tab and position the sliding indicator pill */
+  const updateIndicator = useCallback(() => {
+    const activeEl = tabRefs.current[tab]
+    if (!activeEl || !tabBarRef.current) return
+    const barRect = tabBarRef.current.getBoundingClientRect()
+    const tabRect = activeEl.getBoundingClientRect()
+    setIndicatorStyle({
+      left: tabRect.left - barRect.left,
+      top: tabRect.top - barRect.top,
+      width: tabRect.width,
+      height: tabRect.height,
+      opacity: 1,
+    })
+  }, [tab])
+
+  useLayoutEffect(() => {
+    updateIndicator()
+  }, [updateIndicator])
+
+  useEffect(() => {
+    window.addEventListener('resize', updateIndicator)
+    return () => window.removeEventListener('resize', updateIndicator)
+  }, [updateIndicator])
 
   /* Arrow / Home / End navigation between tabs (ARIA tablist pattern) */
   const onTabKeyDown = (e) => {
@@ -42,7 +70,9 @@ function App() {
       <Hero />
 
       {/* Tab bar — proper ARIA tablist with roving tabindex + arrow keys */}
-      <div className="tabs" role="tablist" aria-label="Portfolio sections">
+      <div className="tabs" ref={tabBarRef} role="tablist" aria-label="Portfolio sections">
+        {/* Sliding jelly indicator pill — follows the active tab */}
+        <div className={`tab-indicator${indicatorPulse ? ' tab-indicator--pulse' : ''}`} style={indicatorStyle} />
         {TABS.map((t) => {
           const selected = tab === t.id
           return (
@@ -55,7 +85,19 @@ function App() {
               aria-controls={`panel-${t.id}`}
               tabIndex={selected ? 0 : -1}
               className={`tab-btn ${selected ? 'active' : ''}`}
-              onClick={() => setTab(t.id)}
+              onClick={() => {
+                if (tab === t.id) {
+                  /* Already active — pulse the indicator glow */
+                  setIndicatorPulse(false)
+                  clearTimeout(pulseTimer.current)
+                  requestAnimationFrame(() => {
+                    setIndicatorPulse(true)
+                    pulseTimer.current = setTimeout(() => setIndicatorPulse(false), 500)
+                  })
+                } else {
+                  setTab(t.id)
+                }
+              }}
               onKeyDown={onTabKeyDown}
             >
               {t.label}
@@ -67,7 +109,7 @@ function App() {
       <hr className="divider" style={{ marginTop: 16 }} />
 
       {tab === 'about' && (
-        <div id="panel-about" role="tabpanel" aria-labelledby="tab-about">
+        <div id="panel-about" role="tabpanel" aria-labelledby="tab-about" className="tab-panel">
           <LogoBar />
           <hr className="divider" />
           <Strengths />
@@ -77,13 +119,13 @@ function App() {
       )}
 
       {tab === 'cases' && (
-        <div id="panel-cases" role="tabpanel" aria-labelledby="tab-cases">
+        <div id="panel-cases" role="tabpanel" aria-labelledby="tab-cases" className="tab-panel">
           <Cases />
         </div>
       )}
 
       {tab === 'ai' && (
-        <div id="panel-ai" role="tabpanel" aria-labelledby="tab-ai">
+        <div id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" className="tab-panel">
           <Knowledge />
         </div>
       )}

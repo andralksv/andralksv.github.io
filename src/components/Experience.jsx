@@ -48,21 +48,23 @@ const earlierJobs = [
 
 const Collapse = ({ isOpen, children }) => {
   const contentRef = useRef(null)
-  const [height, setHeight] = useState(isOpen ? 'auto' : '0px')
+  const isFirstRender = useRef(true)
+  const [height, setHeight] = useState(isOpen ? 'none' : '0px')
 
   useEffect(() => {
+    /* Skip the animation cycle on initial mount — just show the correct */
+    /* state immediately. This prevents a bad scrollHeight measurement   */
+    /* before fonts/content have fully laid out (fixes overlap bug).     */
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
     if (isOpen) {
-      /* Read the real scroll height, set it as max-height to animate to */
       const h = contentRef.current.scrollHeight
       setHeight(`${h}px`)
-      /* After the transition ends, switch to 'auto' so the container    */
-      /* can adapt if content changes (e.g. window resize)               */
-      const timer = setTimeout(() => setHeight('auto'), 300)
+      const timer = setTimeout(() => setHeight('none'), 300)
       return () => clearTimeout(timer)
     } else {
-      /* To animate closed, we first need an explicit pixel value        */
-      /* (can't transition from 'auto'). Set current height, then       */
-      /* on the next frame set 0 so the browser sees the change.        */
       const h = contentRef.current.scrollHeight
       setHeight(`${h}px`)
       requestAnimationFrame(() => {
@@ -76,7 +78,7 @@ const Collapse = ({ isOpen, children }) => {
       ref={contentRef}
       style={{
         maxHeight: height,
-        overflow: 'hidden',
+        overflow: height === 'none' ? 'visible' : 'hidden',
         transition: 'max-height 0.3s ease',
       }}
     >

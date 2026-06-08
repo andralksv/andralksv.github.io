@@ -85,7 +85,7 @@ const Knowledge = () => {
 
   return (
     <section>
-      <p className="section-label">AI in Practice</p>
+      <p className="section-label">AI in my Practice</p>
       <div className="cases-grid">
         {posts.map((p) => (
           <button

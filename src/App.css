@@ -79,7 +79,18 @@
   align-items: center;
   gap: 12px;                       /* space between buttons */
   flex-wrap: wrap;                 /* wraps to next line on small screens */
+}
+
+/* Wrapper for CTA button + popover — provides positioning context */
+.cta-wrapper {
   position: relative;              /* anchor for the absolute-positioned popover */
+}
+
+/* Social icons grouped so they always wrap as a unit */
+.social-icons-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 /* Primary CTA button ("Contact Me") — change background color here */
@@ -226,13 +237,51 @@
 /* Tab bar container */
 .tabs {
   display: flex;
-  flex-wrap: wrap;                 /* wrap to a second row if labels get long */
-  gap: 4px;                        /* space between tab buttons */
+  flex-wrap: wrap;
+  gap: 4px;
   padding: 24px 0 0;
+  position: relative;              /* positioning context for the indicator */
+}
+
+/* Sliding jelly indicator — follows the active tab with spring physics */
+.tab-indicator {
+  position: absolute;
+  border-radius: 25px;
+  background: var(--color-accent);
+  box-shadow: 0 0 16px rgba(var(--color-accent-rgb), 0.35),
+              0 0 4px rgba(var(--color-accent-rgb), 0.15);
+  pointer-events: none;
+  z-index: 0;
+  /* Jelly spring: overshoot on position, slightly faster width settle */
+  transition:
+    left   0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width  0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    top    0.3s ease,
+    height 0.3s ease,
+    opacity 0.2s;
+}
+
+/* Glow pulse when clicking the already-active tab */
+.tab-indicator--pulse {
+  animation: indicator-pulse 0.5s ease-out;
+}
+
+@keyframes indicator-pulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(var(--color-accent-rgb), 0.35),
+                0 0 4px rgba(var(--color-accent-rgb), 0.15);
+  }
+  40% {
+    box-shadow: 0 0 24px rgba(var(--color-accent-rgb), 0.7),
+                0 0 48px rgba(var(--color-accent-rgb), 0.35),
+                0 0 8px rgba(var(--color-accent-rgb), 0.3);
+  }
 }
 
 /* Individual tab button (inactive state) */
 .tab-btn {
+  position: relative;
+  z-index: 1;                      /* above the indicator */
   padding: 8px 18px;
   font-family: inherit;
   font-size: 0.9rem;
@@ -242,18 +291,42 @@
   cursor: pointer;
   background: transparent;
   color: var(--color-text-muted);
-  transition: background 0.15s, color 0.15s;
+  transition: color 0.2s;
 }
 
 .tab-btn:hover {
-  background: none;  /* light grey on hover */
   color: var(--color-accent);
 }
 
-/* Active tab — filled accent background */
+/* Active tab — indicator provides the background, button just shows text */
 .tab-btn.active {
-  background: var(--color-accent);
-  color: #fff;                     /* white text on purple (light mode) */
+  background: transparent;
+  color: #fff;
+}
+
+/* ==========================================================================
+   TAB PANEL — liquid morph animation on content switch
+   ========================================================================== */
+
+.tab-panel {
+  animation: liquid-morph-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes liquid-morph-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.8;
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
 }
 
 /* ==========================================================================
@@ -730,7 +803,18 @@ footer {
     font-size: 2.5rem;
   }
   .logo-bar { gap: 20px; justify-content: flex-start; }
-  .social-row { gap: 10px; }
+
+  /* Mobile social-row: contact me + social icons on row 1, download CV below */
+  .social-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+  .social-row .cta-wrapper   { grid-column: 1; grid-row: 1; }
+  .social-icons-group          { grid-column: 2; grid-row: 1; justify-self: start; }
+  .social-row .btn-secondary  { grid-column: 1; grid-row: 2; justify-content: center; }
+
   .tabs { gap: 2px; }
   .tab-btn { padding: 7px 14px; font-size: 0.85rem; }
 }
@@ -793,6 +877,12 @@ html.dark .btn-primary,
 html.dark .btn-primary:hover,
 html.dark .tab-btn.active {
   color: #070709;
+}
+
+/* Indicator glow uses dark-mode accent color automatically via CSS vars */
+html.dark .tab-indicator {
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.4),
+              0 0 6px rgba(var(--color-accent-rgb), 0.2);
 }
 
 /* Social icon borders are more subtle in dark mode */
