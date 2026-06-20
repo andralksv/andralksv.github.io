@@ -32,8 +32,8 @@ const Tip = ({ children }) => (
 
 const cases = [
   {
-    title: 'A Cancellation Save-Flow That Recovers ~€50k/Year',
-    desc: 'Designed and shipped a web cancellation save-flow from scratch – targeted win-back offers, exit survey, and end-to-end tracking. Churn dropped 15% → 13%, retaining ~€4–4.5k/month (≈€50k/year).',
+    title: 'A Cancellation Save-Flow That Recovers ~€200k/Year',
+    desc: 'Designed and shipped a web cancellation save-flow from scratch – targeted win-back offers, exit survey, and end-to-end tracking. Churn dropped 15% → 13%, retaining ~€15–18k/month (≈€200k/year).',
     tag: 'Retention & Monetization',
     content: [
       'Price is always the number-one cancellation reason. We confirmed it once we added a cancellation survey, but the data also showed something actionable: many users leaving over cost would stay if offered a short-term discount. The existing cancellation flow was a dead end – click "cancel" and you\'re gone. No recovery attempt, no counter-offer, no feedback loop.',
@@ -52,7 +52,7 @@ const cases = [
         Set up Mixpanel events for every step: offer viewed, offer accepted, offer declined, cancellation completed. This let us measure the true recovery rate and revenue impact without guessing.
       </Step>,
       <Step num={5} title="Measured results">
-        Year-over-year web cancellation rate dropped from 15% to 13% – a 2 percentage point improvement. In the first full month, 91 users accepted a recovery offer, generating roughly €4–4.5k/month in retained revenue – about €50k/year at that run-rate. The flow paid for itself within weeks.
+        Year-over-year web cancellation rate dropped from 15% to 13% – a 2 percentage point improvement. In the first full month, 91 users accepted a recovery offer, generating roughly €15–18k/month in retained revenue – about €200k/year at that run-rate. The flow paid for itself within weeks.
       </Step>,
       <Tip>Don't overthink the offer design – start with simple discounts and iterate. The biggest win is just having a recovery step at all. Most of our impact came from users who simply needed a reason to pause before clicking "confirm."</Tip>,
     ],

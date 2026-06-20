@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
-/* CV link – short link to the Google Drive CV (set sharing to "Anyone with the link → Viewer"). */
-const CV_URL = 'https://ggl.link/aalekseev-cv'
+/* CV — static PDF served from /public */
+const CV_URL = '/andrei-alekseev-cv.pdf'
 
 /* ─── EMAIL POPOVER ─── */
 /* Email is NOT in the HTML source — assembled from parts in JS only    */
@@ -103,11 +103,10 @@ const Hero = () => {
             />
           </div>
 
-          {/* CV download — opens your Google Drive CV in a new tab */}
+          {/* CV download — serves static PDF from /public */}
           <a
             href={CV_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Andrei_Alekseev_CV.pdf"
             className="btn-secondary"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

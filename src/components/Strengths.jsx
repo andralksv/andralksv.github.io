@@ -1,9 +1,10 @@
 const strengths = [
-  'Onboarding, monetization & activation across Web, iOS and Android',
-  'Product strategy & roadmapping for SaaS platforms',
-  'Discovery, user research & data-driven prioritization',
-  'Growth analytics & A/B testing',
-  'Cross-functional product ownership, stakeholder management',
+  'Scaling user onboarding, activation & monetization across Web, iOS and Android',
+  'E2E product strategy & roadmapping for SaaS platforms. Agile-mindset.',
+  'Continious Discovery, user research & data-driven prioritization with strong advocacy for users',
+  'Growth analytics, A/B experimentation & conversion funnel optimization',
+  'Cross-functional product ownership & stakeholder alignment from ideation to launch',
+  'Performance marketing expertise driving product-led growth (PLG)',
 ]
 
 const Strengths = () => (

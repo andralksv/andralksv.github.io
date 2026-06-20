@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 
 /* ─── ARTICLE MODAL ─── */
 /* Accessible dialog that slides up when a card is clicked.              */
@@ -60,7 +61,7 @@ const ArticleModal = ({ article, onClose }) => {
 
   if (!article) return null
 
-  return (
+  return createPortal(
     <div className="modal-overlay" ref={overlayRef} onClick={handleOverlayClick}>
       <div
         className="modal-content"
@@ -93,7 +94,8 @@ const ArticleModal = ({ article, onClose }) => {
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
