@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ArticleModal from './ArticleModal'
+import { analytics } from '../analytics'
 
 /* ─── HELPER COMPONENTS FOR ARTICLE CONTENT ─── */
 
@@ -115,7 +116,10 @@ const Cases = () => {
           <button
             className="case-card"
             key={c.title}
-            onClick={() => setOpenArticle(c)}
+            onClick={() => {
+              setOpenArticle(c)
+              analytics.contentOpened('case_study', c.title, c.tag)
+            }}
             aria-label={`Read case study: ${c.title}`}
           >
             <p className="case-card-title">{c.title}</p>

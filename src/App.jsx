@@ -7,6 +7,7 @@ import Cases from './components/Cases'
 import Knowledge from './components/Knowledge'
 import Footer from './components/Footer'
 import ThemeToggle from './components/ThemeToggle'
+import { analytics } from './analytics'
 import './App.css'
 
 /* Top-level tabs. */
@@ -18,6 +19,13 @@ const TABS = [
 
 function App() {
   const [tab, setTab] = useState('about')
+
+  /* Switch tab + record the view (covers both click and keyboard nav). */
+  const selectTab = useCallback((id) => {
+    setTab(id)
+    analytics.tabViewed(id)
+  }, [])
+
   const tabRefs = useRef({})
   const tabBarRef = useRef(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ opacity: 0 })
@@ -59,7 +67,7 @@ function App() {
     if (nextIdx === null) return
     e.preventDefault()
     const nextId = TABS[nextIdx].id
-    setTab(nextId)
+    selectTab(nextId)
     tabRefs.current[nextId]?.focus()
   }
 
@@ -95,7 +103,7 @@ function App() {
                     pulseTimer.current = setTimeout(() => setIndicatorPulse(false), 500)
                   })
                 } else {
-                  setTab(t.id)
+                  selectTab(t.id)
                 }
               }}
               onKeyDown={onTabKeyDown}

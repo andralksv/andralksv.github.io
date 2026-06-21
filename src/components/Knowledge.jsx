@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ArticleModal from './ArticleModal'
+import { analytics } from '../analytics'
 
 /* ─── HELPER COMPONENTS FOR ARTICLE CONTENT ─── */
 
@@ -91,7 +92,10 @@ const Knowledge = () => {
           <button
             className="case-card"
             key={p.title}
-            onClick={() => setOpenArticle(p)}
+            onClick={() => {
+              setOpenArticle(p)
+              analytics.contentOpened('ai_post', p.title, p.tag)
+            }}
             aria-label={`Read article: ${p.title}`}
           >
             <p className="case-card-title">{p.title}</p>

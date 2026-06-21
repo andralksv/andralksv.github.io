@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { analytics } from '../analytics'
 
 /* ─── EXPERIENCE DATA ─── */
 /* Edit these arrays to add/remove/reorder jobs.                         */
@@ -101,7 +102,9 @@ const Experience = () => {
 
   /* Toggle: click same job = close it, click different = open that one */
   const toggle = (i) => {
-    setOpenIndex(openIndex === i ? -1 : i)
+    const willOpen = openIndex !== i
+    setOpenIndex(willOpen ? i : -1)
+    analytics.experienceSectionToggled(expandableJobs[i].title, willOpen)
   }
 
   return (
